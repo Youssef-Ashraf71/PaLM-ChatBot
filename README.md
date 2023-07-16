@@ -4,6 +4,9 @@ Welcome to the PalmBot App! 🎉 This is a simple chat application built using H
 
 Please note that this chat app responds to each individual user request, providing prompt-based responses rather than maintaining accumulative context like ChatGPT.
 
+## 💻 Live Demo
+[PaLMBot](https://palm-chat-bot.vercel.app/)
+
 ## ✨ Features
 
 - 💬 Enter prompts and send them to the chatbot.
