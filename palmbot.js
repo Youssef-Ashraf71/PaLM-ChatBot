@@ -32,7 +32,7 @@ const createChatElement = (content, className) => {
 
 const getChatResponse = async (inChatDiv) => {
   const API_ENDPOINT =
-    "https://generativelanguage.googleapis.com/v1beta2/models/chat-bison-001:generateMessage?key=" +
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=" +
     API_KEY;
 
   const requestOptions = {
@@ -41,19 +41,15 @@ const getChatResponse = async (inChatDiv) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      prompt: {
-        context: "",
-        examples: [],
-        messages: [
-          {
-            content: UserText,
-          },
-        ],
-      },
-      temperature: 0.25,
-      top_k: 40,
-      top_p: 0.95,
-      candidate_count: 1,
+      contents: [
+        {
+          parts: [
+            {
+              text: UserText,
+            },
+          ],
+        },
+      ],
     }),
   };
 
@@ -79,7 +75,7 @@ const getChatResponse = async (inChatDiv) => {
       data.candidates[0].content
     ) {
       inChatDiv.querySelector(".typing-animation").remove();
-      const message = data.candidates[0].content;
+      const message = data.candidates[0].content.parts[0].text;
       const messageElement = document.createElement("p");
       messageElement.textContent = message;
       inChatDiv.querySelector(".chat-details").appendChild(messageElement);
